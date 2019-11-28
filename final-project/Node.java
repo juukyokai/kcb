@@ -206,7 +206,7 @@ public class Node {
         fringe.add(new Node(initial));
         Node tree = new Node(initial);
         
-        System.out.println("Euclidean Distance ");
+        System.out.println("Euclidean Distance = "+initial.countEuclid());
         //loop until it find the goal state
         while(status <= 20){
             if (initial.goal()) {

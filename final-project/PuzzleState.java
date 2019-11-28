@@ -7,8 +7,9 @@ import java.util.Iterator;
 import kcb.Action;
 import kcb.ActionStatePair;
 import kcb.State;
-import java.lang.Math.*;
+import static java.lang.Math.sqrt;
 import static java.lang.Math.abs;
+import static java.lang.Math.pow;
 
 /**
  * The State that implements the Twentyfour-Puzzle.
@@ -119,18 +120,18 @@ public final class PuzzleState implements State {
     public boolean goal() {
         for (int i=0; i<4; i++) {
             for (int j=0; j<4; j++) {
-                System.out.println(tiles[i][j]+" "+(i*4+j+1));
+                //System.out.println(tiles[i][j]+" "+(i*4+j+1));
                 if (tiles[i][j]!=i*4+j+1) {
                     if (i==3 && j==3){
-                        System.out.println("true dal\n\n");
+                //        System.out.println("true dal\n\n");
                         return true;
                     }
-                    System.out.println("false \n\n");
+                //    System.out.println("false \n\n");
                     return false;
                 }
             }
         }
-        System.out.println("true baw\n\n");
+        //System.out.println("true baw\n\n");
         return true;
     }
 
@@ -204,18 +205,29 @@ public final class PuzzleState implements State {
     }
     
     public double countEuclid(){
-        double euclid=0;
-        
+        double euclid=0,power=0;
+        int k=0,l=0;
         for (int i=0; i<4; i++) {
             for (int j=0; j<4; j++) {
-                
-                if (tiles[i][j]!=i*4+j+1 && tiles[i][j] != 0) {
-                    System.out.println(tiles[i][j]+" "+(i*4+j+1));
-                    euclid++;
+                if (tiles[i][j]!=i*4+j+1 && tiles[i][j] != 0) {         //looking for wrong tiles
+                    
+                    while(k<4){                      //lookig for the origin of the wrong tile
+                        while(l<4) {
+                            if((k*4+l+1)==tiles[i][j]){
+                                break;
+                            }
+                            l++;
+                        }
+                        k++;
+                    }
+                    power=sqrt(pow(i-k,2)+pow(l-j,2));
+                    System.out.println(tiles[i][j]+" "+(i*4+j+1)+" = "+power);
+                    euclid=euclid+sqrt(pow(i-k,2)+pow(l-j,2));
                     if (i==3 && j==3){
                         System.out.println("true dal\n\n");
                         return euclid;
                     }
+                    
                 }
             }
         }

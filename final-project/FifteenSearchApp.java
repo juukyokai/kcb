@@ -29,9 +29,9 @@ public class FifteenSearchApp {
 */
         // now perform the search from the "shuffled" initial state (fringe is empty), and
         // pull out the actions that were used to generate this goal state from the initial state
-//        Action[] actions1G = solveH2G(new PuzzleState(myState));
+//        Action[] actions1G = solveH1G(new PuzzleState(myState));
 //        Action[] actions1A = solveH1A(new PuzzleState(myState));
-        Action[] actions2G = solveH2G(new PuzzleState(myState));
+//        Action[] actions2G = solveH2G(new PuzzleState(myState));
         Action[] actions2A = solveH2A(new PuzzleState(myState));
         Action[] actions3A = solveH3A(new PuzzleState(myState));
 
@@ -47,14 +47,15 @@ public class FifteenSearchApp {
           System.out.println(myState2.toString());
         }
 */
-/*
+
         System.out.println("Penyelesaian dengan H3 (Euclidean Distance) dengan A*:---------");
         for (int i = 0; i < actions3A.length; i++) {
             System.out.println((i+1)+": "+actions3A[actions3A.length-1-i]);
             PuzzleState.performAction(myState2,actions3A[actions3A.length-1-i]);
+            System.out.println("Euclidean Distance : "+myState2.countEuclid());
             System.out.println(myState2.toString());
         }
-*/
+
 //        System.out.println("Solution via H1 with A*:-------------");
 //       myState2 = new PuzzleState(myState);
 //        for (int i=0; i<actions1A.length; i++) {
@@ -63,6 +64,7 @@ public class FifteenSearchApp {
 //            System.out.println(myState2.toString());
 //       }
 //
+/*
         System.out.println("Solution via H2 with Greedy:-------------");
         myState2 = new PuzzleState(myState);
         for (int i=0; i<actions2G.length; i++) {
@@ -71,7 +73,8 @@ public class FifteenSearchApp {
             System.out.println("Manhattan Distance : "+myState2.countManhattanDistance());
             System.out.println(myState2.toString());
         }
-
+*/
+/*
         System.out.println("Solution via H2 with A*:-------------");
         myState2 = new PuzzleState(myState);
         for (int i=0; i<actions2A.length; i++) {
@@ -80,7 +83,7 @@ public class FifteenSearchApp {
             System.out.println("Euclid Distance : "+myState2.countEuclid());
             System.out.println(myState2.toString());
         }
-        
+*/      
     }
 
     /**
@@ -135,7 +138,7 @@ public class FifteenSearchApp {
     public static Action[] solveH3A(PuzzleState state){                         //Beta euclidean
         //performing shuffled initial state (fringe is empty)
         //Node goal = Node.myH3A(state, new ArrayList());
-        Node goal = Node.breadthFirstSearch(state, new ArrayList()); //Prototipe Euclid Distance
+        Node goal = Node.euclideanDistance(state, new ArrayList()); //Prototipe Euclid Distance
         Action[] actions = goal.getActions();
         
         return actions;
@@ -146,6 +149,7 @@ public class FifteenSearchApp {
      * Method : Greedy
      * @param state initial puzzle state
      */
+    /*
     public static Action[] solveH2G(PuzzleState state){
         // now perform the search from the "shuffled" initial state (fringe is empty)
         //Node goal = Node.myH2G(state, new ArrayList());
@@ -154,7 +158,7 @@ public class FifteenSearchApp {
         
         return actions;
     }
-    
+    */
 //     /**
 //     * Example solve
 //     * You must change this function to solve the problem with your own 
