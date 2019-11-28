@@ -224,14 +224,12 @@ public final class PuzzleState implements State {
                     System.out.println(tiles[i][j]+" "+(i*4+j+1)+" = "+power);
                     euclid=euclid+sqrt(pow(i-k,2)+pow(l-j,2));
                     if (i==3 && j==3){
-                        System.out.println("true dal\n\n");
                         return euclid;
                     }
                     
                 }
             }
         }
-        System.out.println("true baw\n\n");
         
         return euclid;
     }
