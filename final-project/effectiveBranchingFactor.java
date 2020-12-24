@@ -1,4 +1,4 @@
-package kcb;
+package uasfp;
 /**
      * Calculate the effective branching factor for a tree search.
      * Adapted from ATILLA DEMIRAY's ANSI C CODE CALCULATING EFFECTIVE BRANCHING FACTOR

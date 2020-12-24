@@ -1,10 +1,10 @@
-package kcb;
+package uasfp;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
 
-import kcb.PuzzleState;
+import uasfp.PuzzleState;
 
 
 /**
@@ -200,13 +200,14 @@ public class Node {
         return null;
     }
     
-    public static Node euclideanDistance(State initial, List fringe){
-        int status=0, min =1000;
+    public static Node euclideanDistance(State initial, List fringe, int index){
+        int status=0;
+        double min =1000;
         //adding initial state to fringe
         fringe.add(new Node(initial));
         Node tree = new Node(initial);
         
-        System.out.println("Euclidean Distance = "+initial.countEuclid());
+        System.out.println("Euclidean Distance = "+initial.countEuclid(index));
         //loop until it find the goal state
         while(status <= 20){
             if (initial.goal()) {
@@ -218,9 +219,9 @@ public class Node {
             for (Object a : possibleMove) {
                 Node check = (Node)a;
                 State state = check.getState();
-                // check the lowest distance
-                if (state.countManhattanDistance() < min) {
-                    min = state.countManhattanDistance();
+                // check the lowest distance A*
+                if (state.countEuclid(index) < min) {
+                    min = state.countEuclid(index);
                     initial = state; // save the state for next iteration
                     tree = (Node)check; // save the node to the tree
                 }
@@ -238,7 +239,7 @@ public class Node {
     
     
     // ASLI (BACKUP)
-    public static Node breadthFirstSearch(State initial, List fringe) {
+    public static Node  breadthFirstSearch(State initial, List fringe) {
         // add the initial state to the fringe
         fringe.add(new Node(initial)); 
         // loop through all nodes in the fringe

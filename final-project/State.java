@@ -1,4 +1,4 @@
-package kcb;
+package uasfp;
 
 /**
  * The State interface.
@@ -29,5 +29,5 @@ public interface State {
 
     public int countManhattanDistance();
     
-    public double countEuclid();
+    public double countEuclid(int index);
 }

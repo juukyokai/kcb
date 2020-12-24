@@ -1,12 +1,12 @@
-package kcb;
+package uasfp;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import kcb.Action;
-import kcb.ActionStatePair;
-import kcb.State;
+import uasfp.Action;
+import uasfp.ActionStatePair;
+import uasfp.State;
 import static java.lang.Math.sqrt;
 import static java.lang.Math.abs;
 import static java.lang.Math.pow;
@@ -112,6 +112,7 @@ public final class PuzzleState implements State {
     /**
      * Check if this state is a goal state:
      * |01 02 03 04|
+     *
      * |05 06 07 08|
      * |09 10 11 12|
      * |13 14 15 00|
@@ -179,7 +180,6 @@ public final class PuzzleState implements State {
                 if (tiles[r][c] != counter && tiles[r][c] != 0) {
 //                    System.out.println("Salah Posisi : "+tiles[r][c]);
                     i = (tiles[r][c]%4 == 0) ? (tiles[r][c]/4)-1:Math.floor(tiles[r][c]/4);
-                    
                     if ((double)tiles[r][c]/4 % 1 == 0) {
                         j = 3;
                     } else if ((double)tiles[r][c]/4 % 1 == 0.25) {
@@ -192,7 +192,6 @@ public final class PuzzleState implements State {
                         System.out.println("PuzzleState.java line 186 error");
                         j = 0;
                     }
-                    
 //                    System.out.println("Baris yg benar = "+i);
 //                    System.out.println("Kolom yg benar = "+j);
                     sum += abs(r - i) + abs(c - j);
@@ -200,17 +199,15 @@ public final class PuzzleState implements State {
                 counter++;
             }
         }
-        
         return sum;
     }
     
-    public double countEuclid(){
+    public double countEuclid(int index){
         double euclid=0,power=0;
         int k=0,l=0;
         for (int i=0; i<4; i++) {
             for (int j=0; j<4; j++) {
                 if (tiles[i][j]!=i*4+j+1 && tiles[i][j] != 0) {         //looking for wrong tiles
-                    
                     while(k<4){                      //lookig for the origin of the wrong tile
                         while(l<4) {
                             if((k*4+l+1)==tiles[i][j]){
@@ -221,16 +218,15 @@ public final class PuzzleState implements State {
                         k++;
                     }
                     power=sqrt(pow(i-k,2)+pow(l-j,2));
-                    System.out.println(tiles[i][j]+" "+(i*4+j+1)+" = "+power);
-                    euclid=euclid+sqrt(pow(i-k,2)+pow(l-j,2));
+                    //System.out.println(tiles[i][j]+" "+(i*4+j+1)+" = "+power);
+                    euclid=euclid+sqrt(pow(i-k,2)+pow(l-j,2))+index;        //euclid distance + jarak tempuh
+                    System.out.println(tiles[i][j]+" "+(i*4+j+1)+" = "+euclid);
                     if (i==3 && j==3){
                         return euclid;
                     }
-                    
                 }
             }
         }
-        
         return euclid;
     }
     

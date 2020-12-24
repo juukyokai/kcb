@@ -1,13 +1,13 @@
-package kcb;
+package uasfp;
 
 import java.util.ArrayList;
 import java.lang.Math;
 
-import kcb.Action;
-import kcb.Node;
+import uasfp.Action;
+import uasfp.Node;
 
 public class FifteenSearchApp {
-
+    static int index=0;
     /**
      * Test program for search procedures
      * @param args none interpreted as yet
@@ -50,9 +50,10 @@ public class FifteenSearchApp {
 
         System.out.println("Penyelesaian dengan H3 (Euclidean Distance) dengan A*:---------");
         for (int i = 0; i < actions3A.length; i++) {
+            index=index+i;
             System.out.println((i+1)+": "+actions3A[actions3A.length-1-i]);
             PuzzleState.performAction(myState2,actions3A[actions3A.length-1-i]);
-            System.out.println("Euclidean Distance : "+myState2.countEuclid());
+            System.out.println("Euclidean Distance : "+myState2.countEuclid(index));
             System.out.println(myState2.toString());
         }
 
@@ -134,13 +135,13 @@ public class FifteenSearchApp {
      * Method : A*
      * @param  state initial puzzle state
      */
-    
+
     public static Action[] solveH3A(PuzzleState state){                         //Beta euclidean
         //performing shuffled initial state (fringe is empty)
         //Node goal = Node.myH3A(state, new ArrayList());
-        Node goal = Node.euclideanDistance(state, new ArrayList()); //Prototipe Euclid Distance
+        Node goal = Node.euclideanDistance(state, new ArrayList(), index); //Prototipe Euclid Distance
         Action[] actions = goal.getActions();
-        
+
         return actions;
     }
 
@@ -218,7 +219,7 @@ public class FifteenSearchApp {
                 ; // illegal move
             }
         }
-        System.out.println("total move : "+totalMoves);
+        //System.out.println("total move : "+totalMoves);
         return myState;
     }
 

@@ -1,4 +1,4 @@
-package kcb;
+package uasfp;
 
 /**
  * Class to combine an action with a state.
